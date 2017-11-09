@@ -15,7 +15,9 @@ use pocketmine\utils\Config;
  */
 abstract class BasicPlugin extends PluginBase{
 	protected $modules = [];
+	/** @var SubCommandMap|null */
 	protected $scmdMap = null;
+	/** @var Session|null */
 	protected $session;
 
 	/**

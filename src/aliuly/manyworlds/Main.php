@@ -14,6 +14,7 @@ use pocketmine\command\CommandExecutor;
 use pocketmine\command\CommandSender;
 use pocketmine\level\Position;
 use pocketmine\math\Vector3;
+use pocketmine\Player;
 
 class Main extends BasicPlugin implements CommandExecutor{
 	public $canUnload = false;
@@ -83,6 +84,12 @@ class Main extends BasicPlugin implements CommandExecutor{
 	//
 	// Deprecated Public API
 	//
+	/**
+	 * @param Player  $pl
+	 * @param Vector3 $pos
+	 *
+	 * @return bool
+	 */
 	public function mwtp($pl, $pos){
 		if($this->tpMgr && ($pos instanceof Position)){
 			// Using ManyWorlds for teleporting...
@@ -93,6 +100,13 @@ class Main extends BasicPlugin implements CommandExecutor{
 		return true;
 	}
 
+	/**
+	 * @param Player       $player
+	 * @param string       $world
+	 * @param Vector3|null $spawn
+	 *
+	 * @return bool
+	 */
 	public function teleport($player, $world, $spawn = null){
 		if($this->tpMgr){
 			return $this->tpMgr->teleport($player, $world, $spawn);

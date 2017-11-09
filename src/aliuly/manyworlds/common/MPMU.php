@@ -289,8 +289,10 @@ abstract class MPMU{
 	/**
 	 * Unregisters a command
 	 *
-	 * @param Server|Plugin $obj - Access path to server instance
+	 * @param Server|Plugin $srv - Access path to server instance
 	 * @param string        $cmd - Command name to remove
+	 *
+	 * @return bool
 	 *
 	 * @deprecated Moved to Cmd class
 	 */

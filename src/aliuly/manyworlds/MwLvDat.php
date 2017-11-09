@@ -28,6 +28,7 @@ use aliuly\manyworlds\common\BasicCli;
 use aliuly\manyworlds\common\mc;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\level\format\io\BaseLevelProvider;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\utils\TextFormat;
@@ -73,6 +74,7 @@ class MwLvDat extends BasicCli{
 		}
 		//==== provider
 		$provider = $level->getProvider();
+		assert($provider instanceof BaseLevelProvider);
 		$changed = false;
 		$unload = false;
 		foreach($args as $kv){

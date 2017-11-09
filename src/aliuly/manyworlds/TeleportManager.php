@@ -41,6 +41,13 @@ class TeleportManager implements Listener{
 		$event->setCancelled(true);
 	}
 
+	/**
+	 * @param Player       $player
+	 * @param string       $level
+	 * @param Vector3|null $spawn
+	 *
+	 * @return bool
+	 */
 	public function teleport($player, $level, $spawn = null){
 		$world = $this->owner->getServer()->getLevelByName($level);
 		if(!$world){
