@@ -30,13 +30,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\level\format\io\BaseLevelProvider;
 use pocketmine\math\Vector3;
-use pocketmine\nbt\tag\StringTag;
 use pocketmine\utils\TextFormat;
-
-//use pocketmine\nbt\tag\IntTag;
-
-//use pocketmine\nbt\tag\LongTag;
-//use pocketmine\nbt\tag\CompoundTag;
 
 class MwLvDat extends BasicCli{
 	public function __construct($owner){
@@ -52,7 +46,7 @@ class MwLvDat extends BasicCli{
 	}
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
-		if(count($args) == 0){
+		if(count($args) === 0){
 			return false;
 		}
 		if($scmd === "fixname"){
@@ -79,7 +73,7 @@ class MwLvDat extends BasicCli{
 		$unload = false;
 		foreach($args as $kv){
 			$kv = explode("=", $kv, 2);
-			if(count($kv) != 2){
+			if(count($kv) !== 2){
 				$c->sendMessage(mc::_("Invalid element: %1%, ignored", $kv[0]));
 				continue;
 			}
@@ -87,7 +81,7 @@ class MwLvDat extends BasicCli{
 			switch(strtolower($k)){
 				case "spawn":
 					$pos = explode(",", $v);
-					if(count($pos) != 3){
+					if(count($pos) !== 3){
 						$c->sendMessage(mc::_("Invalid spawn location: %1%", implode(",", $pos)));
 						continue;
 					}
@@ -119,25 +113,25 @@ class MwLvDat extends BasicCli{
 					}
 					$changed = true;
 					$unload = true;
-					$provider->getLevelData()->LevelName = new StringTag("LevelName", $v);
+					$provider->getLevelData()->setString("LevelName", $v);
 					break;
-				case "generator":    // generatorName(String)
-					if($provider->getLevelData()->generatorName == $v){
+				case "generator":
+					if($provider->getLevelData()->getString("generatorName") === $v){
 						$c->sendMessage(mc::_("Generator unchanged"));
 						continue;
 					}
 					$changed = true;
 					$unload = true;
-					$provider->getLevelData()->generatorName = new StringTag("generatorName", $v);
+					$provider->getLevelData()->setString("generatorName", $v);
 					break;
 				case "preset":    // StringTag("generatorOptions");
-					if($provider->getLevelData()->generatorOptions == $v){
+					if($provider->getLevelData()->getString("generatorOptions", "") === $v){
 						$c->sendMessage(mc::_("Preset unchanged"));
 						continue;
 					}
 					$changed = true;
 					$unload = true;
-					$provider->getLevelData()->generatorOptions = new StringTag("generatorOptions", $v);
+					$provider->getLevelData()->setString("generatorOptions", $v);
 					break;
 				default:
 					$c->sendMessage(mc::_("Unknown key %1%, ignored", $k));
