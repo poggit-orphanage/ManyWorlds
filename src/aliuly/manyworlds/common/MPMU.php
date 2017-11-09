@@ -322,12 +322,14 @@ abstract class MPMU{
 		$pm = $player->getServer()->getPluginManager();
 		if(($sa = $pm->getPlugin("SimpleAuth")) !== null){
 			// SimpleAuth also has a HUD when not logged in...
+			/** @noinspection PhpUndefinedMethodInspection */
 			if($sa->isEnabled() && !$sa->isPlayerAuthenticated($player)){
 				return;
 			}
 		}
 		if(($hud = $pm->getPlugin("BasicHUD")) !== null){
 			// Send pop-ups through BasicHUD
+			/** @noinspection PhpUndefinedMethodInspection */
 			$hud->sendPopup($player, $msg);
 
 			return;
