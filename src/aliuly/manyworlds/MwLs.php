@@ -115,7 +115,7 @@ class MwLs extends BasicCli{
 		$lst = "";
 		if(count($plst)){
 			foreach($plst as $p){
-				$lst .= (strlen($lst) ? ", " : "") . $p->getName();
+				$lst .= ($lst !== "" ? ", " : "") . $p->getName();
 			}
 		}
 		$txt[] = TextFormat::AQUA . mc::_("Players(%1%):", count($plst)) .
