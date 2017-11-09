@@ -49,7 +49,7 @@ class MwLs extends BasicCli{
 			return null;
 		}
 		while(($file = readdir($dh)) !== false){
-			if($file == '.' || $file == '..'){
+			if($file === '.' || $file === '..'){
 				continue;
 			}
 			if(!$this->owner->getServer()->isLevelGenerated($file)){
@@ -122,7 +122,7 @@ class MwLs extends BasicCli{
 			TextFormat::WHITE . $lst;
 
 		// Check for warnings...
-		if($provider->getName() != $world){
+		if($provider->getName() !== $world){
 			$txt[] = TextFormat::RED . mc::_("Folder Name and Level.Dat names do NOT match");
 			$txt[] = TextFormat::RED . mc::_("This can cause intermitent problems");
 			if($sender->hasPermission("mw.cmd.lvdat")){
@@ -141,7 +141,7 @@ class MwLs extends BasicCli{
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
 		$pageNumber = $this->getPageNumber($args);
-		if(count($args) == 0){
+		if(count($args) === 0){
 			$txt = $this->mwWorldList($c);
 		}else{
 			$wname = implode(" ", $args);

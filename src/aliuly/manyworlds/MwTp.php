@@ -30,7 +30,7 @@ class MwTp extends BasicCli{
 	}
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
-		if(count($args) == 0){
+		if(count($args) === 0){
 			return false;
 		}
 		$player = $c;

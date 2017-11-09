@@ -55,7 +55,7 @@ class MwLvDat extends BasicCli{
 		if(count($args) == 0){
 			return false;
 		}
-		if($scmd == "fixname"){
+		if($scmd === "fixname"){
 			$world = implode(" ", $args);
 			$c->sendMessage(TextFormat::AQUA . mc::_("Running /mw lvdat %1% name=%1%", $world));
 			$args = [$world, "name=$world"];

@@ -45,7 +45,7 @@ class MwLoader extends BasicCli{
 				return $this->mwWorldLoadCmd($c, implode(" ", $args));
 			case "unload":
 				$force = false;
-				if($args[0] == "-f"){
+				if($args[0] === "-f"){
 					$force = true;
 					array_shift($args);
 					if(count($args) == 0){
@@ -60,7 +60,7 @@ class MwLoader extends BasicCli{
 	}
 
 	private function mwWorldLoadCmd(CommandSender $sender, $wname){
-		if($wname == "--all"){
+		if($wname === "--all"){
 			$wlst = [];
 			foreach(glob($this->owner->getServer()->getDataPath() . "worlds/*") as $f){
 				$world = basename($f);
@@ -105,14 +105,14 @@ class MwLoader extends BasicCli{
 	private function mwWorldUnloadCmd(CommandSender $sender, $wname, $force){
 		if(MPMU::apiVersion("<1.12.0")){
 			// For old stuff...
-			if($wname == "--enable"){
+			if($wname === "--enable"){
 				$this->owner->canUnload = true;
 				$sender->sendMessage(TextFormat::YELLOW . mc::_("[MW] Unload sub-command enabled"));
 				$sender->sendMessage(TextFormat::YELLOW . mc::_("[MW] To disable use: /mw unload --disable"));
 
 				return true;
 			}
-			if($wname == "--disable"){
+			if($wname === "--disable"){
 				$this->owner->canUnload = false;
 				$sender->sendMessage(TextFormat::GREEN . mc::_("[MW] Unload sub-command disabled"));
 				$sender->sendMessage(TextFormat::GREEN . mc::_("[MW] To enable use: /mw unload --enable"));
