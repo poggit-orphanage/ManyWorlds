@@ -14,22 +14,12 @@ use pocketmine\command\CommandExecutor;
 use pocketmine\command\CommandSender;
 
 class Main extends BasicPlugin implements CommandExecutor{
-	public $canUnload = false;
-	/** @var TeleportManager|null */
-	private $tpMgr;
 
 	public function onEnable(){
 		// We don't really need this...
 		//if (!is_dir($this->getDataFolder())) mkdir($this->getDataFolder());
 		mc::plugin_init($this, $this->getFile());
 
-		if(MPMU::apiVersion("1.12.0")){
-			$this->canUnload = true;
-			$this->tpMgr = null;
-		}else{
-			$this->canUnload = false;
-			$this->tpMgr = new TeleportManager($this);
-		}
 		$this->modules = [];
 		foreach([
 			"MwTp",
