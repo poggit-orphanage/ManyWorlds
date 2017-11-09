@@ -10,13 +10,16 @@ use pocketmine\command\CommandSender;
  */
 class SubCommandMap{
 
-	public function __construct(){
-		$this->executors = [];
-		$this->help = [];
-		$this->usage = [];
-		$this->aliases = [];
-		$this->permission = [];
-	}
+	/** @var callable[] */
+	private $executors = [];
+	/** @var string[] */
+	private $help = [];
+	/** @var string[] */
+	private $usage = [];
+	/** @var string[] */
+	private $aliases = [];
+	/** @var string[] */
+	private $permission = [];
 
 	/**
 	 * Returns the number of commands configured
