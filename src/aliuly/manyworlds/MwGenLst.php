@@ -34,13 +34,7 @@ class MwGenLst extends BasicCli{
 			return false;
 		}
 
-		if(MPMU::apiVersion("1.12.0") || MPMU::apiVersion("2.0.0")){
-			$c->sendMessage(implode(", ", Generator::getGeneratorList()));
-		}else{
-			$c->sendMessage("normal, flat");
-			$c->sendMessage(TextFormat::RED . mc::_("[MW] Plugin provided world generators\n are not included in\n this list."));
-		}
-
+		$c->sendMessage(implode(", ", Generator::getGeneratorList()));
 		return true;
 	}
 }
