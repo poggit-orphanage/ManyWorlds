@@ -13,6 +13,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\CommandSender;
 use pocketmine\level\Position;
+use pocketmine\math\Vector3;
 
 class Main extends BasicPlugin implements CommandExecutor{
 	public $canUnload = false;

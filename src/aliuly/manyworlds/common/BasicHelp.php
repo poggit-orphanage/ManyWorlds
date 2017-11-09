@@ -4,6 +4,7 @@ namespace aliuly\manyworlds\common;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 
 /**
@@ -26,9 +27,9 @@ class BasicHelp extends BasicCli{
 	 *
 	 * @param CommandSender $c - Entity issuing the command
 	 * @param Command       $cc - actual command that was issued
-	 * @param str           $scmd - sub-command being executed
+	 * @param string        $scmd - sub-command being executed
 	 * @param mixed         $data - Additional data passed to sub-command (global options)
-	 * @param str[]         $args - arguments for sub-command
+	 * @param string[]      $args - arguments for sub-command
 	 */
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
 		$cm = $this->owner->getSCmdMap();

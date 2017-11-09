@@ -6,6 +6,7 @@ namespace aliuly\manyworlds\common;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
 /**
@@ -38,9 +39,9 @@ class Session implements Listener{
 	/**
 	 * Get a player state for the desired module/$label.
 	 *
-	 * @param str        $label - state variable to get
-	 * @param Player|str $player - Player instance or name
-	 * @param mixed      $default - default value to return is no state found
+	 * @param string        $label - state variable to get
+	 * @param Player|string $player - Player instance or name
+	 * @param mixed         $default - default value to return is no state found
 	 *
 	 * @return mixed
 	 */
@@ -55,9 +56,9 @@ class Session implements Listener{
 	/**
 	 * Set a player related state
 	 *
-	 * @param str        $label - state variable to set
-	 * @param Player|str $player - player instance or their name
-	 * @param mixed      $val - value to set
+	 * @param string        $label - state variable to set
+	 * @param Player|string $player - player instance or their name
+	 * @param mixed         $val - value to set
 	 *
 	 * @return mixed
 	 */
@@ -72,8 +73,8 @@ class Session implements Listener{
 	/**
 	 * Clears a player related state
 	 *
-	 * @param str        $label - state variable to clear
-	 * @param Player|str $player - intance of Player or their name
+	 * @param string        $label - state variable to clear
+	 * @param Player|string $player - intance of Player or their name
 	 */
 	public function unsetState($label, $player){
 		$player = MPMU::iName($player);

@@ -18,7 +18,7 @@ abstract class BasicCli{
 	protected $owner;
 
 	/**
-	 * @param BasicPlugin @owner - Plugin that owns this module
+	 * @param BasicPlugin $owner - Plugin that owns this module
 	 */
 	public function __construct($owner){
 		$this->owner = $owner;
@@ -27,17 +27,17 @@ abstract class BasicCli{
 	/**
 	 * Register this class as a sub-command.  See BasicPlugin for details.
 	 *
-	 * @param str     $cmd - sub-command to register
+	 * @param string  $cmd - sub-command to register
 	 * @param mixed[] $opts - additional options for registering sub-command
 	 */
 	public function enableSCmd($cmd, $opts){
-		$this->owner->registerScmd($cmd, [$this, "onSCommand"], $opts);
+		$this->owner->registerSCmd($cmd, [$this, "onSCommand"], $opts);
 	}
 
 	/**
 	 * Register this class as a command.
 	 *
-	 * @param str     $cmd - command to register
+	 * @param string  $cmd - command to register
 	 * @param mixed[] $yaml - options for command
 	 */
 	public function enableCmd($cmd, $yaml){
@@ -70,7 +70,7 @@ abstract class BasicCli{
 	 * Use for paginaged output implementation.
 	 * This gets the player specified page number that we want to Display
 	 *
-	 * @param str[] $args - Passed arguments
+	 * @param string[] $args - Passed arguments
 	 *
 	 * @return int page number
 	 */
@@ -90,7 +90,7 @@ abstract class BasicCli{
 	 *
 	 * @param CommandSender $sender - entity that we need to display text to
 	 * @param int           $pageNumber - page that we need to display
-	 * @param str[]         $txt - Array containing one element per output line
+	 * @param string[]      $txt - Array containing one element per output line
 	 *
 	 * @return bool true
 	 */
@@ -127,7 +127,7 @@ abstract class BasicCli{
 	 *
 	 * @param CommandSender $sender - entity that we need to display text to
 	 * @param int           $pageNumber - page that we need to display
-	 * @param str[][]       $txt - Array containing one element per cell
+	 * @param string[][]    $txt - Array containing one element per cell
 	 *
 	 * @return bool true
 	 */

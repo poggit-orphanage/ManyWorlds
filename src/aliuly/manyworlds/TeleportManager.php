@@ -5,6 +5,7 @@ namespace aliuly\manyworlds;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\Listener;
 use pocketmine\math\Vector3;
+use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\CallbackTask;
 
