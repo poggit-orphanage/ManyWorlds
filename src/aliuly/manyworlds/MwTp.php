@@ -58,8 +58,8 @@ class MwTp extends BasicCli{
 			return true;
 		}
 		$wname = implode(" ", $args);
-		if($player->getLevel() == $this->owner->getServer()->getLevelByName($wname)){
-			$c->sendMessage($c == $player ? mc::_("You are already in %1%", $wname) : mc::_("%1% is already in %2%", $player->getName(), $wname));
+		if($player->getLevel() === $this->owner->getServer()->getLevelByName($wname)){
+			$c->sendMessage($c === $player ? mc::_("You are already in %1%", $wname) : mc::_("%1% is already in %2%", $player->getName(), $wname));
 
 			return true;
 		}
@@ -74,7 +74,7 @@ class MwTp extends BasicCli{
 
 			return true;
 		}
-		if($c != $player){
+		if($c !== $player){
 			$player->sendMessage(TextFormat::YELLOW . mc::_("Teleporting you to %1% by %2%", $wname, $c->getName()));
 		}else{
 			$c->sendMessage(TextFormat::GREEN . mc::_("Teleporting to %1%", $wname));
