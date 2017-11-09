@@ -12,9 +12,6 @@ use aliuly\manyworlds\common\MPMU;
 use pocketmine\command\Command;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\CommandSender;
-use pocketmine\level\Position;
-use pocketmine\math\Vector3;
-use pocketmine\Player;
 
 class Main extends BasicPlugin implements CommandExecutor{
 	public $canUnload = false;
@@ -79,48 +76,5 @@ class Main extends BasicPlugin implements CommandExecutor{
 		}
 
 		return $this->dispatchSCmd($sender, $cmd, $args);
-	}
-
-	//
-	// Deprecated Public API
-	//
-	/**
-	 * @param Player  $pl
-	 * @param Vector3 $pos
-	 *
-	 * @return bool
-	 */
-	public function mwtp($pl, $pos){
-		if($this->tpMgr && ($pos instanceof Position)){
-			// Using ManyWorlds for teleporting...
-			return $this->teleport($pl, $pos->getLevel()->getName(), new Vector3($pos->getX(), $pos->getY(), $pos->getZ()));
-		}
-		$pl->teleport($pos);
-
-		return true;
-	}
-
-	/**
-	 * @param Player       $player
-	 * @param string       $world
-	 * @param Vector3|null $spawn
-	 *
-	 * @return bool
-	 */
-	public function teleport($player, $world, $spawn = null){
-		if($this->tpMgr){
-			return $this->tpMgr->teleport($player, $world, $spawn);
-		}
-		if(!$this->getServer()->isLevelLoaded($world)){
-			return false;
-		}
-		$level = $this->getServer()->getLevelByName($world);
-		if(!$level){
-			return false;
-		}
-		// Try to find a reasonable spawn location
-		$location = $level->getSafeSpawn($spawn);
-
-		return $player->teleport($location);
 	}
 }

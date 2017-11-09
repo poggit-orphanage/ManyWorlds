@@ -103,32 +103,6 @@ class MwLoader extends BasicCli{
 	}
 
 	private function mwWorldUnloadCmd(CommandSender $sender, $wname, $force){
-		if(MPMU::apiVersion("<1.12.0")){
-			// For old stuff...
-			if($wname === "--enable"){
-				$this->owner->canUnload = true;
-				$sender->sendMessage(TextFormat::YELLOW . mc::_("[MW] Unload sub-command enabled"));
-				$sender->sendMessage(TextFormat::YELLOW . mc::_("[MW] To disable use: /mw unload --disable"));
-
-				return true;
-			}
-			if($wname === "--disable"){
-				$this->owner->canUnload = false;
-				$sender->sendMessage(TextFormat::GREEN . mc::_("[MW] Unload sub-command disabled"));
-				$sender->sendMessage(TextFormat::GREEN . mc::_("[MW] To enable use: /mw unload --enable"));
-
-				return true;
-			}
-			if(!$this->owner->canUnload){
-				$sender->sendMessage(TextFormat::RED . mc::_("[MW] Unload sub-command is disabled by default"));
-				$sender->sendMessage(TextFormat::RED . mc::_("[MW] this is because that it usually causes the"));
-				$sender->sendMessage(TextFormat::RED . mc::_("[MW] server to CRASH!"));
-				$sender->sendMessage(TextFormat::RED . mc::_("[MW] To activate use:"));
-				$sender->sendMessage(TextFormat::BLUE . mc::_("-   /mw unload --enable"));
-
-				return true;
-			}
-		}
 		// Actual implementation
 		if(!$this->owner->getServer()->isLevelLoaded($wname)){
 			$sender->sendMessage(TextFormat::RED . mc::_("[MW] %1% is not loaded.", $wname));
