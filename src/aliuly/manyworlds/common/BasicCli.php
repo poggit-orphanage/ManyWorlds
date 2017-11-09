@@ -141,12 +141,15 @@ abstract class BasicCli{
 	 */
 	protected function paginateTable(CommandSender $sender, $pageNumber, array $tab){
 		$cols = [];
-		for($i = 0; $i < count($tab[0]); $i++){
-			$cols[$i] = strlen($tab[0][$i]);
+
+		foreach($tab[0] as $i => $item){
+			$cols[$i] = strlen($item);
 		}
+
+		/** @var string[] $row */
 		foreach($tab as $row){
-			for($i = 0; $i < count($row); $i++){
-				if(($l = strlen($row[$i])) > $cols[$i]){
+			foreach($row as $i => $str){
+				if(($l = strlen($str)) > $cols[$i]){
 					$cols[$i] = $l;
 				}
 			}
