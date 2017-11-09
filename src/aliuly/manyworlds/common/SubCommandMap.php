@@ -99,15 +99,15 @@ class SubCommandMap{
 	}
 
 	public function getUsage($scmd){
-		return isset($this->usage[$scmd]) ? $this->usage[$scmd] : null;
+		return $this->usage[$scmd] ?? null;
 	}
 
 	public function getAlias($scmd){
-		return isset($this->aliases[$scmd]) ? $this->aliases[$scmd] : null;
+		return $this->aliases[$scmd] ?? null;
 	}
 
 	public function getHelpMsg($scmd){
-		return isset($this->help[$scmd]) ? $this->help[$scmd] : null;
+		return $this->help[$scmd] ?? null;
 	}
 
 	public function getHelp(){
