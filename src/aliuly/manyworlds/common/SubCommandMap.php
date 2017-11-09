@@ -9,6 +9,7 @@ use pocketmine\command\CommandSender;
  * Sub Command dispatcher
  */
 class SubCommandMap{
+
 	public function __construct(){
 		$this->executors = [];
 		$this->help = [];
@@ -26,6 +27,13 @@ class SubCommandMap{
 
 	/**
 	 * Dispatch commands using sub command table
+	 *
+	 * @param CommandSender $sender
+	 * @param Command       $cmd
+	 * @param string[]      $args
+	 * @param array|null    $data
+	 *
+	 * @return bool
 	 */
 	public function dispatchSCmd(CommandSender $sender, Command $cmd, array $args, $data = null){
 		if(count($args) == 0){

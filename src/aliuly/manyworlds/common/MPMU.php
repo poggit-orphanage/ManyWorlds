@@ -217,6 +217,7 @@ abstract class MPMU{
 	 * @param Server       $server - pocketmine server instance
 	 * @param string|array $plug - plugin to call
 	 * @param string       $method - method to call
+	 * @param array        $args
 	 * @param mixed        $default - If the plugin does not exist or it is not enable, this value is returned
 	 *
 	 * @return mixed
@@ -354,8 +355,10 @@ abstract class MPMU{
 	/**
 	 * Look-up player
 	 *
-	 * @param CommandSender $req
+	 * @param CommandSender $c
 	 * @param string        $n
+	 *
+	 * @return Player|null
 	 */
 	public static function getPlayer(CommandSender $c, $n){
 		$pl = $c->getServer()->getPlayer($n);

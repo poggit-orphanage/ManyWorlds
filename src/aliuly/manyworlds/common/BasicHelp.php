@@ -15,6 +15,7 @@ class BasicHelp extends BasicCli{
 
 	/**
 	 * @param PluginBase $owner - plugin that owns this command
+	 * @param string     $fmt
 	 */
 	public function __construct($owner, $fmt = "/%s %s %s"){
 		parent::__construct($owner);
@@ -30,6 +31,8 @@ class BasicHelp extends BasicCli{
 	 * @param string        $scmd - sub-command being executed
 	 * @param mixed         $data - Additional data passed to sub-command (global options)
 	 * @param string[]      $args - arguments for sub-command
+	 *
+	 * @return bool
 	 */
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
 		$cm = $this->owner->getSCmdMap();

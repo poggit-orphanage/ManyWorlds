@@ -135,7 +135,7 @@ abstract class BasicCli{
 	 *
 	 * @param CommandSender $sender - entity that we need to display text to
 	 * @param int           $pageNumber - page that we need to display
-	 * @param string[][]    $txt - Array containing one element per cell
+	 * @param string[][]    $tab - Array containing one element per cell
 	 *
 	 * @return bool true
 	 */

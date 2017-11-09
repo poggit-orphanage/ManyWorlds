@@ -101,9 +101,9 @@ abstract class BasicPlugin extends PluginBase{
 	 *
 	 * @return mixed|null
 	 */
-	public function getModule($str){
-		if(isset($this->modules[$str])){
-			return $this->modules[$str];
+	public function getModule($module){
+		if(isset($this->modules[$module])){
+			return $this->modules[$module];
 		}
 
 		return null;
@@ -133,6 +133,13 @@ abstract class BasicPlugin extends PluginBase{
 
 	/**
 	 * Dispatch commands using sub command table
+	 *
+	 * @param CommandSender $sender
+	 * @param Command       $cmd
+	 * @param string[]      $args
+	 * @param array|null    $data
+	 *
+	 * @return bool
 	 */
 	protected function dispatchSCmd(CommandSender $sender, Command $cmd, array $args, $data = null){
 		if($this->scmdMap === null){
