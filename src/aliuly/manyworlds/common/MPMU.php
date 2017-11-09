@@ -4,7 +4,9 @@
 //: - Misc shorcuts and pre-canned routines
 
 namespace aliuly\manyworlds\common;
+use pocketmine\command\CommandExecutor;
 use pocketmine\item\Item;
+use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\MainLogger;
 use pocketmine\command\CommandSender;
@@ -198,7 +200,7 @@ abstract class MPMU {
 	 *
 	 * @param Plugin $plugin - plugin that "owns" the command
 	 * @param CommandExecutor $executor - object that will be called onCommand
-	 * @param str $cmd - Command name
+	 * @param string $cmd - Command name
 	 * @param array $yaml - Additional settings for this command.
 	 * @deprecated Moved to Cmd class
 	 */
@@ -212,7 +214,7 @@ abstract class MPMU {
 			$aliasList = [];
 			foreach($yaml["aliases"] as $alias) {
 				if(strpos($alias,":")!== false) {
-					$this->owner->getLogger()->info("Unable to load alias $alias");
+					$plugin->getLogger()->info("Unable to load alias $alias");
 					continue;
 				}
 				$aliasList[] = $alias;
