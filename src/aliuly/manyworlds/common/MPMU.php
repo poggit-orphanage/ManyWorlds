@@ -83,7 +83,7 @@ abstract class MPMU{
 			case ">":
 				return version_compare($api, trim(substr($version, 1))) > 0;
 		}
-		if(intval($api) != intval($version)){
+		if((int) $api !== (int) $version){
 			return 0;
 		}
 

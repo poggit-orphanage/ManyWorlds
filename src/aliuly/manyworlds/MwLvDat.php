@@ -93,9 +93,9 @@ class MwLvDat extends BasicCli{
 					}
 					list($x, $y, $z) = $pos;
 					$cpos = $provider->getSpawn();
-					if(($x = intval($x)) == $cpos->getX() &&
-						($y = intval($y)) == $cpos->getY() &&
-						($z = intval($z)) == $cpos->getZ()){
+					if(($x = (int) $x) == $cpos->getX() &&
+						($y = (int) $y) == $cpos->getY() &&
+						($z = (int) $z) == $cpos->getZ()){
 						$c->sendMessage(mc::_("Spawn location is unchanged"));
 						continue;
 					}
@@ -103,7 +103,8 @@ class MwLvDat extends BasicCli{
 					$provider->setSpawn(new Vector3($x, $y, $z));
 					break;
 				case "seed":
-					if($provider->getSeed() == intval($v)){
+					$v = (int) $v;
+					if($provider->getSeed() === $v){
 						$c->sendMessage(mc::_("Seed unchanged"));
 						continue;
 					}
@@ -112,7 +113,7 @@ class MwLvDat extends BasicCli{
 					$provider->setSeed($v);
 					break;
 				case "name": // LevelName String
-					if($provider->getName() == $v){
+					if($provider->getName() === $v){
 						$c->sendMessage(mc::_("Name unchanged"));
 						continue;
 					}

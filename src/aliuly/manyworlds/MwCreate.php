@@ -44,7 +44,7 @@ class MwCreate extends BasicCli{
 		$generator = null;
 		$opts = [];
 		if(isset($args[0])){
-			$seed = intval($args[0]);
+			$seed = (int) $args[0];
 		}
 		if(isset($args[1])){
 			$generator = Generator::getGenerator($args[1]);
