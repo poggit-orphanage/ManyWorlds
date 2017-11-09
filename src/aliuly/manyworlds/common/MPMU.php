@@ -28,7 +28,7 @@ abstract class MPMU{
 	 *
 	 * @return string|bool
 	 */
-	static public function version($version = ""){
+	public static function version($version = ""){
 		if($version == ""){
 			return self::VERSION;
 		}
@@ -43,7 +43,7 @@ abstract class MPMU{
 	 *
 	 * @return string|bool
 	 */
-	static public function apiVersion($version = ""){
+	public static function apiVersion($version = ""){
 		if($version == ""){
 			return \pocketmine\API_VERSION;
 		}
@@ -62,7 +62,7 @@ abstract class MPMU{
 	 *
 	 * @return bool
 	 */
-	static public function apiCheck($api, $version){
+	public static function apiCheck($api, $version){
 		switch(substr($version, 0, 2)){
 			case ">=":
 				return version_compare($api, trim(substr($version, 2))) >= 0;
@@ -97,7 +97,7 @@ abstract class MPMU{
 	 *
 	 * @return string
 	 */
-	static public function gamemodeStr($mode){
+	public static function gamemodeStr($mode){
 		if(class_exists(__NAMESPACE__ . "\\mc", false)){
 			switch($mode){
 				case 0:
@@ -135,7 +135,7 @@ abstract class MPMU{
 	 *
 	 * @return bool
 	 */
-	static public function access(CommandSender $sender, $permission, $msg = true){
+	public static function access(CommandSender $sender, $permission, $msg = true){
 		if($sender->hasPermission($permission)){
 			return true;
 		}
@@ -154,7 +154,7 @@ abstract class MPMU{
 	 *
 	 * @return bool
 	 */
-	static public function inGame(CommandSender $sender, $msg = true){
+	public static function inGame(CommandSender $sender, $msg = true){
 		if(!($sender instanceof Player)){
 			if($msg){
 				$sender->sendMessage(mc::_("You can only do this in-game"));
@@ -173,7 +173,7 @@ abstract class MPMU{
 	 *
 	 * @return string
 	 */
-	static public function iName($player){
+	public static function iName($player){
 		if($player instanceof CommandSender){
 			$player = strtolower($player->getName());
 		}
@@ -189,7 +189,7 @@ abstract class MPMU{
 	 *
 	 * @return string|null
 	 */
-	static public function getResourceContents($plugin, $filename){
+	public static function getResourceContents($plugin, $filename){
 		$fp = $plugin->getResource($filename);
 		if($fp === null){
 			return null;
@@ -221,7 +221,7 @@ abstract class MPMU{
 	 *
 	 * @return mixed
 	 */
-	static public function callPlugin($server, $plug, $method, $args, $default = null){
+	public static function callPlugin($server, $plug, $method, $args, $default = null){
 		$v = null;
 		if(is_array($plug)){
 			list($plug, $v) = $plug;
@@ -256,7 +256,7 @@ abstract class MPMU{
 	 *
 	 * @deprecated Moved to Cmd class
 	 */
-	static public function addCommand($plugin, $executor, $cmd, $yaml){
+	public static function addCommand($plugin, $executor, $cmd, $yaml){
 		$newCmd = new \pocketmine\command\PluginCommand($cmd, $plugin);
 		if(isset($yaml["description"])){
 			$newCmd->setDescription($yaml["description"]);
@@ -294,7 +294,7 @@ abstract class MPMU{
 	 *
 	 * @deprecated Moved to Cmd class
 	 */
-	static public function rmCommand($srv, $cmd){
+	public static function rmCommand($srv, $cmd){
 		$cmdMap = $srv->getCommandMap();
 		$oldCmd = $cmdMap->getCommand($cmd);
 		if($oldCmd === null){
@@ -315,7 +315,7 @@ abstract class MPMU{
 	 * @param Player $player
 	 * @param string $msg
 	 */
-	static public function sendPopup($player, $msg){
+	public static function sendPopup($player, $msg){
 		$pm = $player->getServer()->getPluginManager();
 		if(($sa = $pm->getPlugin("SimpleAuth")) !== null){
 			// SimpleAuth also has a HUD when not logged in...
@@ -340,7 +340,7 @@ abstract class MPMU{
 	 *
 	 * @return string|null
 	 */
-	static public function startsWith($txt, $tok){
+	public static function startsWith($txt, $tok){
 		$ln = strlen($tok);
 		if(strtolower(substr($txt, 0, $ln)) != $tok){
 			return null;
@@ -355,7 +355,7 @@ abstract class MPMU{
 	 * @param CommandSender $req
 	 * @param string        $n
 	 */
-	static public function getPlayer(CommandSender $c, $n){
+	public static function getPlayer(CommandSender $c, $n){
 		$pl = $c->getServer()->getPlayer($n);
 		if($pl === null){
 			$c->sendMessage(mc::_("%1% not found", $n));
