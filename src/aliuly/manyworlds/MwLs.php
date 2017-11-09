@@ -39,25 +39,41 @@ class MwLs extends BasicCli{
 
 		$auto = $this->owner->getServer()->getProperty("worlds", []);
 		$default = $this->owner->getServer()->getDefaultLevel();
-		if($default) $default = $default->getName();
+		if($default){
+			$default = $default->getName();
+		}
 
 		$count = 0;
 		$dh = opendir($dir);
-		if(!$dh) return null;
+		if(!$dh){
+			return null;
+		}
 		while(($file = readdir($dh)) !== false){
-			if($file == '.' || $file == '..') continue;
-			if(!$this->owner->getServer()->isLevelGenerated($file)) continue;
+			if($file == '.' || $file == '..'){
+				continue;
+			}
+			if(!$this->owner->getServer()->isLevelGenerated($file)){
+				continue;
+			}
 			$attrs = [];
 			++$count;
-			if(isset($auto[$file])) $attrs[] = mc::_("auto");
-			if($default == $file) $attrs[] = mc::_("default");
+			if(isset($auto[$file])){
+				$attrs[] = mc::_("auto");
+			}
+			if($default == $file){
+				$attrs[] = mc::_("default");
+			}
 			if($this->owner->getServer()->isLevelLoaded($file)){
 				$attrs[] = mc::_("loaded");
 				$np = count($this->owner->getServer()->getLevelByName($file)->getPlayers());
-				if($np) $attrs[] = mc::_("players:%1%", $np);
+				if($np){
+					$attrs[] = mc::_("players:%1%", $np);
+				}
 			}
 			$ln = "- $file";
-			if(count($attrs)) $ln .= TextFormat::AQUA . " (" . implode(",", $attrs) . ")";
+			if(count($attrs)){
+				$ln .= TextFormat::AQUA . " (" . implode(",", $attrs) . ")";
+			}
 			$txt[] = $ln;
 		}
 		closedir($dh);
@@ -89,9 +105,10 @@ class MwLs extends BasicCli{
 		$txt[] = TextFormat::AQUA . mc::_("Seed: ") . TextFormat::WHITE . $provider->getSeed();
 		$txt[] = TextFormat::AQUA . mc::_("Generator: ") . TextFormat::WHITE . $provider->getGenerator();
 		$gopts = $provider->getGeneratorOptions();
-		if($gopts["preset"] != "")
+		if($gopts["preset"] != ""){
 			$txt[] = TextFormat::AQUA . mc::_("Generator Presets: ") . TextFormat::WHITE .
 				$gopts["preset"];
+		}
 		$spawn = $provider->getSpawn();
 		$txt[] = TextFormat::AQUA . mc::_("Spawn: ") . TextFormat::WHITE . $spawn->getX() . "," . $spawn->getY() . "," . $spawn->getZ();
 		$plst = $level->getPlayers();
@@ -115,7 +132,9 @@ class MwLs extends BasicCli{
 			}
 		}
 
-		if($unload) $this->owner->getServer()->unloadLevel($level);
+		if($unload){
+			$this->owner->getServer()->unloadLevel($level);
+		}
 
 		return $txt;
 	}
@@ -128,7 +147,9 @@ class MwLs extends BasicCli{
 			$wname = implode(" ", $args);
 			$txt = $this->mwWorldDetails($c, $wname);
 		}
-		if($txt == null) return true;
+		if($txt == null){
+			return true;
+		}
 
 		return $this->paginateText($c, $pageNumber, $txt);
 	}

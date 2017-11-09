@@ -51,7 +51,9 @@ class MwLvDat extends BasicCli{
 	}
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
-		if(count($args) == 0) return false;
+		if(count($args) == 0){
+			return false;
+		}
 		if($scmd == "fixname"){
 			$world = implode(" ", $args);
 			$c->sendMessage(TextFormat::AQUA . mc::_("Running /mw lvdat %1% name=%1%", $world));

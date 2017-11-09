@@ -17,7 +17,8 @@ use pocketmine\math\Vector3;
 
 class Main extends BasicPlugin implements CommandExecutor{
 	public $canUnload = false;
-	private $tpMgr = null;
+	/** @var TeleportManager|null */
+	private $tpMgr;
 
 	public function onEnable(){
 		// We don't really need this...
@@ -48,8 +49,12 @@ class Main extends BasicPlugin implements CommandExecutor{
 	}
 
 	public function autoLoad(CommandSender $c, $world){
-		if($this->getServer()->isLevelLoaded($world)) return true;
-		if($c !== null && !MPMU::access($c, "mw.cmd.world.load")) return false;
+		if($this->getServer()->isLevelLoaded($world)){
+			return true;
+		}
+		if($c !== null && !MPMU::access($c, "mw.cmd.world.load")){
+			return false;
+		}
 		if(!$this->getServer()->isLevelGenerated($world)){
 			if($c !== null){
 				$c->sendMessage(mc::_("[MW] No world with the name %1% exists!", $world));
@@ -68,7 +73,9 @@ class Main extends BasicPlugin implements CommandExecutor{
 	//
 	//////////////////////////////////////////////////////////////////////
 	public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
-		if($cmd->getName() != "manyworlds") return false;
+		if($cmd->getName() != "manyworlds"){
+			return false;
+		}
 
 		return $this->dispatchSCmd($sender, $cmd, $args);
 	}
@@ -90,11 +97,16 @@ class Main extends BasicPlugin implements CommandExecutor{
 		if($this->tpMgr){
 			return $this->tpMgr->teleport($player, $world, $spawn);
 		}
-		if(!$this->getServer()->isLevelLoaded($world)) return false;
-		$level = $this->owner->getServer()->getLevelByName($world);
-		if(!$level) return false;
+		if(!$this->getServer()->isLevelLoaded($world)){
+			return false;
+		}
+		$level = $this->getServer()->getLevelByName($world);
+		if(!$level){
+			return false;
+		}
 		// Try to find a reasonable spawn location
 		$location = $level->getSafeSpawn($spawn);
-		$player->teleport($location);
+
+		return $player->teleport($location);
 	}
 }

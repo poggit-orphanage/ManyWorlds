@@ -31,7 +31,9 @@ class MwCreate extends BasicCli{
 	}
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
-		if(count($args) < 1 || count($args) > 4) return false;
+		if(count($args) < 1 || count($args) > 4){
+			return false;
+		}
 		$world = array_shift($args);
 		if($this->owner->getServer()->isLevelGenerated($world)){
 			$c->sendMessage(TextFormat::RED . mc::_("[MW] A world named %1% already exists", $world));
@@ -41,7 +43,9 @@ class MwCreate extends BasicCli{
 		$seed = null;
 		$generator = null;
 		$opts = [];
-		if(isset($args[0])) $seed = intval($args[0]);
+		if(isset($args[0])){
+			$seed = intval($args[0]);
+		}
 		if(isset($args[1])){
 			$generator = Generator::getGenerator($args[1]);
 			if(strtolower($args[1]) != Generator::getGeneratorName($generator)){
@@ -51,7 +55,9 @@ class MwCreate extends BasicCli{
 			}
 			$c->sendMessage(TextFormat::GREEN . mc::_("[MW] Using %1%", Generator::getGeneratorName($generator)));
 		}
-		if(isset($args[2])) $opts = ["preset" => $args[2]];
+		if(isset($args[2])){
+			$opts = ["preset" => $args[2]];
+		}
 		$this->owner->getServer()->broadcastMessage(mc::_("[MW] Creating level %1%... (Expect Lag)", $world));
 		$this->owner->getServer()->generateLevel($world, $seed, $generator, $opts);
 		$this->owner->getServer()->loadLevel($world);

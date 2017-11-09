@@ -50,7 +50,9 @@ class SubCommandMap{
 			}
 		}
 		$callback = $this->executors[$scmd];
-		if($callback($sender, $cmd, $scmd, $data, $args)) return true;
+		if($callback($sender, $cmd, $scmd, $data, $args)){
+			return true;
+		}
 		if(isset($this->executors["help"])){
 			$callback = $this->executors["help"];
 
@@ -75,8 +77,12 @@ class SubCommandMap{
 			$this->help[$cmd] = $opts["help"];
 			ksort($this->help);
 		}
-		if(isset($opts["usage"])) $this->usage[$cmd] = $opts["usage"];
-		if(isset($opts["permission"])) $this->permission[$cmd] = $opts["permission"];
+		if(isset($opts["usage"])){
+			$this->usage[$cmd] = $opts["usage"];
+		}
+		if(isset($opts["permission"])){
+			$this->permission[$cmd] = $opts["permission"];
+		}
 		if(isset($opts["aliases"])){
 			foreach($opts["aliases"] as $alias){
 				$this->aliases[$alias] = $cmd;

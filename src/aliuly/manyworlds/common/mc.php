@@ -3,6 +3,7 @@
 //: - Translations
 
 namespace aliuly\manyworlds\common;
+
 use pocketmine\plugin\Plugin;
 
 /**
@@ -41,7 +42,9 @@ abstract class mc{
 	 */
 	public static function _(...$args){
 		$fmt = array_shift($args);
-		if(isset(self::$txt[$fmt])) $fmt = self::$txt[$fmt];
+		if(isset(self::$txt[$fmt])){
+			$fmt = self::$txt[$fmt];
+		}
 		if(count($args)){
 			$vars = ["%%" => "%"];
 			$i = 1;
@@ -83,7 +86,9 @@ abstract class mc{
 		$msgs = $path . "resources/messages/" .
 			$plugin->getServer()->getProperty("settings.language") .
 			".ini";
-		if(!file_exists($msgs)) return false;
+		if(!file_exists($msgs)){
+			return false;
+		}
 
 		return self::load($msgs);
 	}
@@ -108,7 +113,9 @@ abstract class mc{
 			$c = preg_match_all($re, $potxt, $mm);
 			if($c){
 				for($i = 0; $i < $c; ++$i){
-					if($mm[2][$i] == "") continue;
+					if($mm[2][$i] == ""){
+						continue;
+					}
 					eval('$a = "' . $mm[1][$i] . '";');
 					eval('$b = "' . $mm[2][$i] . '";');
 					self::$txt[$a] = $b;

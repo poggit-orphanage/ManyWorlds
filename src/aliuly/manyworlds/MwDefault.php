@@ -28,7 +28,9 @@ class MwDefault extends BasicCli{
 	}
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
-		if(count($args) == 0) return false;
+		if(count($args) == 0){
+			return false;
+		}
 		$wname = implode(" ", $args);
 		$old = $this->owner->getServer()->getConfigString("level-name");
 		if($old == $wname){

@@ -24,9 +24,13 @@ class TeleportManager implements Listener{
 	public function onDamage(EntityDamageEvent $event){
 		// Try keep the player alive while on transit...
 		$victim = $event->getEntity();
-		if(!($victim instanceof Player)) return;
+		if(!($victim instanceof Player)){
+			return;
+		}
 		$vname = $victim->getName();
-		if(!isset($this->teleporters[$vname])) return;
+		if(!isset($this->teleporters[$vname])){
+			return;
+		}
 		if(time() - $this->teleporters[$vname] > 2){
 			unset($this->teleporters[$vname()]);
 
@@ -90,14 +94,20 @@ class TeleportManager implements Listener{
 
 	public function restoreHealth($name, $health){
 		$player = $this->owner->getServer()->getPlayer($name);
-		if(!$player) return;
+		if(!$player){
+			return;
+		}
 		$player->setHealth($health);
 	}
 
 	public function delayedTP($name, $x, $y, $z, $level){
 		$player = $this->owner->getServer()->getPlayer($name);
-		if(!$player) return;
-		if($player->getLevel()->getName() != $level) return;
+		if(!$player){
+			return;
+		}
+		if($player->getLevel()->getName() != $level){
+			return;
+		}
 		$player->teleport(new Vector3($x, $y, $z));
 	}
 

@@ -42,10 +42,12 @@ abstract class BasicCli{
 	 */
 	public function enableCmd($cmd, $yaml){
 		$newCmd = new PluginCommand($cmd, $this->owner);
-		if(isset($yaml["description"]))
+		if(isset($yaml["description"])){
 			$newCmd->setDescription($yaml["description"]);
-		if(isset($yaml["usage"]))
+		}
+		if(isset($yaml["usage"])){
 			$newCmd->setUsage($yaml["usage"]);
+		}
 		if(isset($yaml["aliases"]) and is_array($yaml["aliases"])){
 			$aliasList = [];
 			foreach($yaml["aliases"] as $alias){
@@ -57,10 +59,12 @@ abstract class BasicCli{
 			}
 			$newCmd->setAliases($aliasList);
 		}
-		if(isset($yaml["permission"]))
+		if(isset($yaml["permission"])){
 			$newCmd->setPermission($yaml["permission"]);
-		if(isset($yaml["permission-message"]))
+		}
+		if(isset($yaml["permission-message"])){
 			$newCmd->setPermissionMessage($yaml["permission-message"]);
+		}
 		$newCmd->setExecutor($this);
 		$cmdMap = $this->owner->getServer()->getCommandMap();
 		$cmdMap->register($this->owner->getDescription()->getName(), $newCmd);
@@ -78,7 +82,9 @@ abstract class BasicCli{
 		$pageNumber = 1;
 		if(count($args) && is_numeric($args[count($args) - 1])){
 			$pageNumber = (int) array_pop($args);
-			if($pageNumber <= 0) $pageNumber = 1;
+			if($pageNumber <= 0){
+				$pageNumber = 1;
+			}
 		}
 
 		return $pageNumber;
@@ -98,7 +104,9 @@ abstract class BasicCli{
 		$hdr = array_shift($txt);
 		if($sender instanceof ConsoleCommandSender){
 			$sender->sendMessage(TextFormat::GREEN . $hdr . TextFormat::RESET);
-			foreach($txt as $ln) $sender->sendMessage($ln);
+			foreach($txt as $ln){
+				$sender->sendMessage($ln);
+			}
 
 			return true;
 		}
@@ -133,16 +141,22 @@ abstract class BasicCli{
 	 */
 	protected function paginateTable(CommandSender $sender, $pageNumber, array $tab){
 		$cols = [];
-		for($i = 0; $i < count($tab[0]); $i++) $cols[$i] = strlen($tab[0][$i]);
+		for($i = 0; $i < count($tab[0]); $i++){
+			$cols[$i] = strlen($tab[0][$i]);
+		}
 		foreach($tab as $row){
 			for($i = 0; $i < count($row); $i++){
-				if(($l = strlen($row[$i])) > $cols[$i]) $cols[$i] = $l;
+				if(($l = strlen($row[$i])) > $cols[$i]){
+					$cols[$i] = $l;
+				}
 			}
 		}
 		$txt = [];
 		$fmt = "";
 		foreach($cols as $c){
-			if(strlen($fmt) > 0) $fmt .= " ";
+			if(strlen($fmt) > 0){
+				$fmt .= " ";
+			}
 			$fmt .= "%-" . $c . "s";
 		}
 		foreach($tab as $row){

@@ -33,7 +33,9 @@ class Session implements Listener{
 	 */
 	public function onPlayerQuit(PlayerQuitEvent $ev){
 		$n = MPMU::iName($ev->getPlayer());
-		if(isset($this->state[$n])) unset($this->state[$n]);
+		if(isset($this->state[$n])){
+			unset($this->state[$n]);
+		}
 	}
 
 	/**
@@ -47,8 +49,12 @@ class Session implements Listener{
 	 */
 	public function getState($label, $player, $default){
 		$player = MPMU::iName($player);
-		if(!isset($this->state[$player])) return $default;
-		if(!isset($this->state[$player][$label])) return $default;
+		if(!isset($this->state[$player])){
+			return $default;
+		}
+		if(!isset($this->state[$player][$label])){
+			return $default;
+		}
 
 		return $this->state[$player][$label];
 	}
@@ -64,7 +70,9 @@ class Session implements Listener{
 	 */
 	public function setState($label, $player, $val){
 		$player = MPMU::iName($player);
-		if(!isset($this->state[$player])) $this->state[$player] = [];
+		if(!isset($this->state[$player])){
+			$this->state[$player] = [];
+		}
 		$this->state[$player][$label] = $val;
 
 		return $val;
@@ -78,8 +86,12 @@ class Session implements Listener{
 	 */
 	public function unsetState($label, $player){
 		$player = MPMU::iName($player);
-		if(!isset($this->state[$player])) return;
-		if(!isset($this->state[$player][$label])) return;
+		if(!isset($this->state[$player])){
+			return;
+		}
+		if(!isset($this->state[$player][$label])){
+			return;
+		}
 		unset($this->state[$player][$label]);
 	}
 

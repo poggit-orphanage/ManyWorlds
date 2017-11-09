@@ -30,25 +30,33 @@ class MwTp extends BasicCli{
 	}
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
-		if(count($args) == 0) return false;
+		if(count($args) == 0){
+			return false;
+		}
 		$player = $c;
 		if(count($args) > 1){
 			$player = $this->owner->getServer()->getPlayer($args[0]);
 			if($player !== null){
-				if(!MPMU::access($c, "mw.cmd.tp.others")) return true;
+				if(!MPMU::access($c, "mw.cmd.tp.others")){
+					return true;
+				}
 				array_shift($args);
 			}else{
 				// Compatibility with old versions...
 				$player = $this->owner->getServer()->getPlayer($args[count($args) - 1]);
 				if($player !== null){
-					if(!MPMU::access($c, "mw.cmd.tp.others")) return true;
+					if(!MPMU::access($c, "mw.cmd.tp.others")){
+						return true;
+					}
 					array_pop($args);
 				}else{
 					$player = $c;
 				}
 			}
 		}
-		if(!MPMU::inGame($player)) return true;
+		if(!MPMU::inGame($player)){
+			return true;
+		}
 		$wname = implode(" ", $args);
 		if($player->getLevel() == $this->owner->getServer()->getLevelByName($wname)){
 			$c->sendMessage($c == $player ? mc::_("You are already in %1%", $wname) : mc::_("%1% is already in %2%", $player->getName(), $wname));

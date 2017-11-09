@@ -29,7 +29,9 @@ abstract class MPMU{
 	 * @return string|bool
 	 */
 	static public function version($version = ""){
-		if($version == "") return self::VERSION;
+		if($version == ""){
+			return self::VERSION;
+		}
 
 		return self::apiCheck(self::VERSION, $version);
 	}
@@ -42,7 +44,9 @@ abstract class MPMU{
 	 * @return string|bool
 	 */
 	static public function apiVersion($version = ""){
-		if($version == "") return \pocketmine\API_VERSION;
+		if($version == ""){
+			return \pocketmine\API_VERSION;
+		}
 
 		return self::apiCheck(\pocketmine\API_VERSION, $version);
 	}
@@ -79,7 +83,9 @@ abstract class MPMU{
 			case ">":
 				return version_compare($api, trim(substr($version, 1))) > 0;
 		}
-		if(intval($api) != intval($version)) return 0;
+		if(intval($api) != intval($version)){
+			return 0;
+		}
 
 		return version_compare($api, $version) >= 0;
 	}
@@ -130,9 +136,12 @@ abstract class MPMU{
 	 * @return bool
 	 */
 	static public function access(CommandSender $sender, $permission, $msg = true){
-		if($sender->hasPermission($permission)) return true;
-		if($msg)
+		if($sender->hasPermission($permission)){
+			return true;
+		}
+		if($msg){
 			$sender->sendMessage(mc::_("You do not have permission to do that."));
+		}
 
 		return false;
 	}
@@ -147,7 +156,9 @@ abstract class MPMU{
 	 */
 	static public function inGame(CommandSender $sender, $msg = true){
 		if(!($sender instanceof Player)){
-			if($msg) $sender->sendMessage(mc::_("You can only do this in-game"));
+			if($msg){
+				$sender->sendMessage(mc::_("You can only do this in-game"));
+			}
 
 			return false;
 		}
@@ -212,17 +223,25 @@ abstract class MPMU{
 	 */
 	static public function callPlugin($server, $plug, $method, $args, $default = null){
 		$v = null;
-		if(is_array($plug)) list($plug, $v) = $plug;
+		if(is_array($plug)){
+			list($plug, $v) = $plug;
+		}
 		if(($plugin = $server->getPluginManager()->getPlugin($plug)) === null
-			|| !$plugin->isEnabled()) return $default;
+			|| !$plugin->isEnabled()){
+			return $default;
+		}
 
-		if($v !== null && !self::apiCheck($plugin->getDescription()->getVersion(), $v)) return $default;
+		if($v !== null && !self::apiCheck($plugin->getDescription()->getVersion(), $v)){
+			return $default;
+		}
 		if(property_exists($plugin, "api")){
 			$fn = [$plugin->api, $method];
 		}else{
 			$fn = [$plugin, $method];
 		}
-		if(!is_callable($fn)) return $default;
+		if(!is_callable($fn)){
+			return $default;
+		}
 
 		return $fn(...$args);
 	}
@@ -239,10 +258,12 @@ abstract class MPMU{
 	 */
 	static public function addCommand($plugin, $executor, $cmd, $yaml){
 		$newCmd = new \pocketmine\command\PluginCommand($cmd, $plugin);
-		if(isset($yaml["description"]))
+		if(isset($yaml["description"])){
 			$newCmd->setDescription($yaml["description"]);
-		if(isset($yaml["usage"]))
+		}
+		if(isset($yaml["usage"])){
 			$newCmd->setUsage($yaml["usage"]);
+		}
 		if(isset($yaml["aliases"]) and is_array($yaml["aliases"])){
 			$aliasList = [];
 			foreach($yaml["aliases"] as $alias){
@@ -254,10 +275,12 @@ abstract class MPMU{
 			}
 			$newCmd->setAliases($aliasList);
 		}
-		if(isset($yaml["permission"]))
+		if(isset($yaml["permission"])){
 			$newCmd->setPermission($yaml["permission"]);
-		if(isset($yaml["permission-message"]))
+		}
+		if(isset($yaml["permission-message"])){
 			$newCmd->setPermissionMessage($yaml["permission-message"]);
+		}
 		$newCmd->setExecutor($executor);
 		$cmdMap = $plugin->getServer()->getCommandMap();
 		$cmdMap->register($plugin->getDescription()->getName(), $newCmd);
@@ -274,7 +297,9 @@ abstract class MPMU{
 	static public function rmCommand($srv, $cmd){
 		$cmdMap = $srv->getCommandMap();
 		$oldCmd = $cmdMap->getCommand($cmd);
-		if($oldCmd === null) return false;
+		if($oldCmd === null){
+			return false;
+		}
 		$oldCmd->setLabel($cmd . "_disabled");
 		$oldCmd->unregister($cmdMap);
 
@@ -294,7 +319,9 @@ abstract class MPMU{
 		$pm = $player->getServer()->getPluginManager();
 		if(($sa = $pm->getPlugin("SimpleAuth")) !== null){
 			// SimpleAuth also has a HUD when not logged in...
-			if($sa->isEnabled() && !$sa->isPlayerAuthenticated($player)) return;
+			if($sa->isEnabled() && !$sa->isPlayerAuthenticated($player)){
+				return;
+			}
 		}
 		if(($hud = $pm->getPlugin("BasicHUD")) !== null){
 			// Send pop-ups through BasicHUD
@@ -315,7 +342,9 @@ abstract class MPMU{
 	 */
 	static public function startsWith($txt, $tok){
 		$ln = strlen($tok);
-		if(strtolower(substr($txt, 0, $ln)) != $tok) return null;
+		if(strtolower(substr($txt, 0, $ln)) != $tok){
+			return null;
+		}
 
 		return trim(substr($txt, $ln));
 	}
@@ -328,7 +357,9 @@ abstract class MPMU{
 	 */
 	static public function getPlayer(CommandSender $c, $n){
 		$pl = $c->getServer()->getPlayer($n);
-		if($pl === null) $c->sendMessage(mc::_("%1% not found", $n));
+		if($pl === null){
+			$c->sendMessage(mc::_("%1% not found", $n));
+		}
 
 		return $pl;
 	}

@@ -37,7 +37,9 @@ class MwLoader extends BasicCli{
 	}
 
 	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
-		if(count($args) == 0) return false;
+		if(count($args) == 0){
+			return false;
+		}
 		switch($scmd){
 			case "load":
 				return $this->mwWorldLoadCmd($c, implode(" ", $args));
@@ -46,7 +48,9 @@ class MwLoader extends BasicCli{
 				if($args[0] == "-f"){
 					$force = true;
 					array_shift($args);
-					if(count($args) == 0) return false;
+					if(count($args) == 0){
+						return false;
+					}
 				}
 
 				return $this->mwWorldUnloadCmd($c, implode(" ", $args), $force);
@@ -60,8 +64,12 @@ class MwLoader extends BasicCli{
 			$wlst = [];
 			foreach(glob($this->owner->getServer()->getDataPath() . "worlds/*") as $f){
 				$world = basename($f);
-				if($this->owner->getServer()->isLevelLoaded($world)) continue;
-				if(!$this->owner->getServer()->isLevelGenerated($world)) continue;
+				if($this->owner->getServer()->isLevelLoaded($world)){
+					continue;
+				}
+				if(!$this->owner->getServer()->isLevelGenerated($world)){
+					continue;
+				}
 				$wlst[] = $world;
 			}
 			if(count($wlst) == 0){
@@ -134,10 +142,11 @@ class MwLoader extends BasicCli{
 			return true;
 		}
 		if(!$this->owner->getServer()->unloadLevel($level, $force)){
-			if($force)
+			if($force){
 				$sender->sendMessage(TextFormat::RED . mc::_("[MW] Unable to unload %1%", $wname));
-			else
+			}else{
 				$sender->sendMessage(TextFormat::RED . mc::_("[MW] Unable to unload %1%.  Try -f", $wname));
+			}
 		}else{
 			$sender->sendMessage(TextFormat::GREEN . mc::_("[MW] %1% unloaded.", $wname));
 		}

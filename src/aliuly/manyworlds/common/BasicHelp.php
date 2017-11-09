@@ -37,7 +37,9 @@ class BasicHelp extends BasicCli{
 
 		if(count($args)){
 			if($args[0] == "usage"){
-				if($cm->getUsage($scmd) === null) return false;
+				if($cm->getUsage($scmd) === null){
+					return false;
+				}
 				$c->sendMessage(TextFormat::RED . mc::_("Usage: ") .
 								sprintf($this->fmt,
 										$cc->getName(),
@@ -48,7 +50,9 @@ class BasicHelp extends BasicCli{
 			$txt = ["Help for " . $cc->getName()];
 
 			foreach($args as $i){
-				if($cm->getAlias($i) !== null) $i = $cm->getAlias($i);
+				if($cm->getAlias($i) !== null){
+					$i = $cm->getAlias($i);
+				}
 				if($cm->getHelpMsg($i) === null && $cm->getUsage($i) === null){
 					$txt[] = TextFormat::RED . mc::_("No help for %1%", $i);
 					continue;
@@ -56,13 +60,15 @@ class BasicHelp extends BasicCli{
 
 				$txt[] = TextFormat::YELLOW . mc::_("Help: ") . TextFormat::WHITE .
 					"/" . $cc->getName() . " $i";
-				if($cm->getHelpMsg($i) !== null)
+				if($cm->getHelpMsg($i) !== null){
 					$txt[] = TextFormat::YELLOW . mc::_("Description: ") .
 						TextFormat::WHITE . $cm->getHelpMsg($i);
-				if($cm->getUsage($i) !== null)
+				}
+				if($cm->getUsage($i) !== null){
 					$txt[] = TextFormat::YELLOW . mc::_("Usage: ") .
 						TextFormat::WHITE .
 						sprintf($this->fmt, $cc->getName(), $i, $cm->getUsage($i));
+				}
 			}
 
 			return $this->paginateText($c, $pageNumber, $txt);
@@ -72,7 +78,9 @@ class BasicHelp extends BasicCli{
 		foreach($cm->getHelp() as $cn => $desc){
 			$ln = TextFormat::GREEN . $cn;
 			foreach($cm->getAliases() as $i => $j){
-				if($j == $cn) $ln .= "|$i";
+				if($j == $cn){
+					$ln .= "|$i";
+				}
 			}
 			$ln .= ": " . TextFormat::WHITE . $desc;
 			$txt[] = $ln;

@@ -29,7 +29,9 @@ abstract class BasicPlugin extends PluginBase{
 	 * @return array
 	 */
 	protected function modConfig($ns, $mods, $defaults, $xhlp = ""){
-		if(!isset($defaults["features"])) $defaults["features"] = [];
+		if(!isset($defaults["features"])){
+			$defaults["features"] = [];
+		}
 		foreach($mods as $i => $j){
 			$defaults["features"][$i] = $j[1];
 		}
@@ -41,14 +43,20 @@ abstract class BasicPlugin extends PluginBase{
 				$this->getLogger()->info(mc::_("Unknown feature \"%1%\" ignored.", $i));
 				continue;
 			}
-			if(!$j) continue;
+			if(!$j){
+				continue;
+			}
 			$class = $mods[$i][0];
 			if(is_array($class)){
 				while(count($class) > 1){
 					// All classes before the last one are dependencies...
 					$classname = $dep = array_shift($class);
-					if(strpos($classname, "\\") === false) $classname = $ns . "\\" . $classname;
-					if(isset($this->modules[$dep])) continue; // Dependancy already loaded
+					if(strpos($classname, "\\") === false){
+						$classname = $ns . "\\" . $classname;
+					}
+					if(isset($this->modules[$dep])){
+						continue;
+					} // Dependancy already loaded
 					if(isset($cfg[strtolower($dep)])){
 						$this->modules[$dep] = new $classname($this, $cfg[strtolower($dep)]);
 					}else{
@@ -58,17 +66,20 @@ abstract class BasicPlugin extends PluginBase{
 				// The last class in the array implements the actual feature
 				$class = array_shift($class);
 			}
-			if(strpos($class, "\\") === false) $class = $ns . "\\" . $class;
-			if(isset($cfg[$i]))
+			if(strpos($class, "\\") === false){
+				$class = $ns . "\\" . $class;
+			}
+			if(isset($cfg[$i])){
 				$this->modules[$i] = new $class($this, $cfg[$i]);
-			else
+			}else{
 				$this->modules[$i] = new $class($this);
+			}
 		}
 		$c = count($this->modules);
 		if($c == 0){
 			$this->getLogger()->info(mc::_("NO features enabled"));
 
-			return;
+			return [];
 		}
 		$this->session = null;
 		$this->getLogger()->info(mc::n(mc::_("Enabled one feature"),
@@ -89,7 +100,9 @@ abstract class BasicPlugin extends PluginBase{
 	 * @return mixed|null
 	 */
 	public function getModule($str){
-		if(isset($this->modules[$str])) return $this->modules[$str];
+		if(isset($this->modules[$str])){
+			return $this->modules[$str];
+		}
 
 		return null;
 	}
@@ -160,7 +173,9 @@ abstract class BasicPlugin extends PluginBase{
 	 * @return mixed
 	 */
 	public function getState($label, $player, $default){
-		if($this->session === null) return $default;
+		if($this->session === null){
+			return $default;
+		}
 
 		return $this->session->getState($label, $player, $default);
 	}
@@ -175,7 +190,9 @@ abstract class BasicPlugin extends PluginBase{
 	 * @return mixed
 	 */
 	public function setState($label, $player, $val){
-		if($this->session === null) $this->session = new Session($this);
+		if($this->session === null){
+			$this->session = new Session($this);
+		}
 
 		return $this->session->setState($label, $player, $val);
 	}
@@ -187,7 +204,9 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param Player|string $player - intance of Player or their name
 	 */
 	public function unsetState($label, $player){
-		if($this->session === null) return;
+		if($this->session === null){
+			return;
+		}
 		$this->session->unsetState($label, $player);
 	}
 
