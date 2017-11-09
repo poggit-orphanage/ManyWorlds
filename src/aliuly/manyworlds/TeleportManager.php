@@ -42,23 +42,6 @@ class TeleportManager implements Listener{
 	}
 
 	public function teleport($player, $level, $spawn = null){
-		//
-		// This CRAZY HACK is to remove Tile entities that seem to linger
-		// whenever you teleport!
-		//
-		$current = $player->getLevel();
-		if($current->getName() != $level){
-			foreach($current->getTiles() as $tile){
-				$pk = new \pocketmine\network\protocol\UpdateBlockPacket();
-				$pk->x = $tile->x;
-				$pk->y = $tile->y;
-				$pk->z = $tile->z;
-				$pk->block = 0;
-				$pk->meta = 0;
-				$player->dataPacket($pk);
-			}
-		}
-
 		$world = $this->owner->getServer()->getLevelByName($level);
 		if(!$world){
 			$player->sendMessage("Unable to teleport to $level");
