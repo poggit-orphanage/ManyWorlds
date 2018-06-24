@@ -45,10 +45,10 @@ abstract class MPMU{
 	 */
 	public static function apiVersion($version = ""){
 		if($version == ""){
-			return \pocketmine\API_VERSION;
+			return \pocketmine\BASE_VERSION;
 		}
 
-		return self::apiCheck(\pocketmine\API_VERSION, $version);
+		return self::apiCheck(\pocketmine\BASE_VERSION, $version);
 	}
 
 	/**
