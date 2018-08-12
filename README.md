@@ -13,7 +13,7 @@ ManyWorlds
 * OptionalPlugins: n/a
 * Categories: Admin Tools, Teleportation
 * Plugin Access: Commands, Manages Worlds
-* WebSite: [github](https://github.com/alejandroliu/pocketmine-plugins/tree/master/ManyWorlds)
+* WebSite: [github](https://github.com/poggit-orphanage/ManyWorlds/tree/master)
 
 ## Overview
 
@@ -25,7 +25,7 @@ question/bug-report/request please use the
 that.  You are more likely to get a response and help that way.
 
 Please go to
-[github](https://github.com/alejandroliu/pocketmine-plugins/tree/master/ManyWorlds)
+[github](https://github.com/poggit-orphanage/ManyWorlds/tree/master)
 for the most up-to-date documentation.
 
 Full feature set of commands to manage multiple worlds.
@@ -158,7 +158,7 @@ languages currently available are:
 
 You can provide your own message file by creating a file called
 `messages.ini` in the pluginc config directory.  Check
-[github](https://github.com/alejandroliu/pocketmine-plugins/tree/master/ManyWorlds/resources/messages/)
+[github](https://github.com/poggit-orphanage/ManyWorlds/tree/master/resources/messages/)
 for sample files.
 
 ## Issues
