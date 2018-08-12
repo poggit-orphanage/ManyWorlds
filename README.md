@@ -1,6 +1,11 @@
 <img src="https://raw.githubusercontent.com/alejandroliu/pocketmine-plugins/master/Media/ManyWorlds-icon.png" style="width:64px;height:64px" width="64" height="64"/>
 
-# ManyWorlds
+ManyWorlds
+=========
+
+| Poggit | Discord |
+| :---: | :---: |
+[![Poggit](https://poggit.pmmp.io/ci.shield/poggit-orphanage/ManyWorlds/ManyWorlds)](https://poggit.pmmp.io/ci/poggit-orphanage/ManyWorlds/ManyWorlds) | <a href="https://discord.gg/NgHf9jt"><img src="https://discordapp.com/api/guilds/402639859535052811/embed.png" alt="Discord server"/></a> |
 
 * Summary: Manage Multiple Worlds
 * Dependency Plugins: n/a
