@@ -18,7 +18,7 @@ use aliuly\manyworlds\common\BasicCli;
 use aliuly\manyworlds\common\mc;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\level\generator\Generator;
+use pocketmine\level\generator\GeneratorManager;
 use pocketmine\utils\TextFormat;
 
 class MwCreate extends BasicCli{
@@ -47,13 +47,13 @@ class MwCreate extends BasicCli{
 			$seed = (int) $args[0];
 		}
 		if(isset($args[1])){
-			$generator = Generator::getGenerator($args[1]);
-			if(strtolower($args[1]) != Generator::getGeneratorName($generator)){
+			$generator = GeneratorManager::getGenerator($args[1]);
+			if(strtolower($args[1]) != GeneratorManager::getGeneratorName($generator)){
 				$c->sendMessage(TextFormat::RED . mc::_("[MW] Unknown generator %1%", $args[1]));
 
 				return true;
 			}
-			$c->sendMessage(TextFormat::GREEN . mc::_("[MW] Using %1%", Generator::getGeneratorName($generator)));
+			$c->sendMessage(TextFormat::GREEN . mc::_("[MW] Using %1%", GeneratorManager::getGeneratorName($generator)));
 		}
 		if(isset($args[2])){
 			$opts = ["preset" => $args[2]];
