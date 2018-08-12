@@ -187,6 +187,7 @@ for sample files.
 
 # Changes
 
+* 2.2.0: New API updates
 * 2.1.0: Updating to new API
 * 2.0.3: Bugfix update
   * Fixes bug reported by @thebigsmileXD
