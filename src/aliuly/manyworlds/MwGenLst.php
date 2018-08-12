@@ -14,11 +14,9 @@ namespace aliuly\manyworlds;
 
 use aliuly\manyworlds\common\BasicCli;
 use aliuly\manyworlds\common\mc;
-use aliuly\manyworlds\common\MPMU;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\level\generator\Generator;
-use pocketmine\utils\TextFormat;
+use pocketmine\level\generator\GeneratorManager;
 
 class MwGenLst extends BasicCli{
 	public function __construct($owner){
@@ -34,7 +32,7 @@ class MwGenLst extends BasicCli{
 			return false;
 		}
 
-		$c->sendMessage(implode(", ", Generator::getGeneratorList()));
+		$c->sendMessage(implode(", ", GeneratorManager::getGeneratorList()));
 		return true;
 	}
 }
