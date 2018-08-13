@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/alejandroliu/pocketmine-plugins/master/Media/ManyWorlds-icon.png" style="width:64px;height:64px" width="64" height="64"/>
+<img src="https://github.com/poggit-orphanage/ManyWorlds/blob/master/media/ManyWorlds-icon.png" style="width:64px;height:64px" width="64" height="64"/>
 
 ManyWorlds
 =========
