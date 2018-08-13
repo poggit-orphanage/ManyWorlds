@@ -19,7 +19,6 @@ namespace aliuly\manyworlds;
 
 use aliuly\manyworlds\common\BasicCli;
 use aliuly\manyworlds\common\mc;
-use aliuly\manyworlds\common\MPMU;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;

@@ -1,6 +1,11 @@
 <img src="https://raw.githubusercontent.com/alejandroliu/pocketmine-plugins/master/Media/ManyWorlds-icon.png" style="width:64px;height:64px" width="64" height="64"/>
 
-# ManyWorlds
+ManyWorlds
+=========
+
+| Poggit | Discord |
+| :---: | :---: |
+[![Poggit](https://poggit.pmmp.io/ci.shield/poggit-orphanage/ManyWorlds/ManyWorlds)](https://poggit.pmmp.io/ci/poggit-orphanage/ManyWorlds/ManyWorlds) | <a href="https://discord.gg/NgHf9jt"><img src="https://discordapp.com/api/guilds/402639859535052811/embed.png" alt="Discord server"/></a> |
 
 * Summary: Manage Multiple Worlds
 * Dependency Plugins: n/a
@@ -8,7 +13,7 @@
 * OptionalPlugins: n/a
 * Categories: Admin Tools, Teleportation
 * Plugin Access: Commands, Manages Worlds
-* WebSite: [github](https://github.com/alejandroliu/pocketmine-plugins/tree/master/ManyWorlds)
+* WebSite: [github](https://github.com/poggit-orphanage/ManyWorlds/tree/master)
 
 ## Overview
 
@@ -20,7 +25,7 @@ question/bug-report/request please use the
 that.  You are more likely to get a response and help that way.
 
 Please go to
-[github](https://github.com/alejandroliu/pocketmine-plugins/tree/master/ManyWorlds)
+[github](https://github.com/poggit-orphanage/ManyWorlds/tree/master)
 for the most up-to-date documentation.
 
 Full feature set of commands to manage multiple worlds.
@@ -153,7 +158,7 @@ languages currently available are:
 
 You can provide your own message file by creating a file called
 `messages.ini` in the pluginc config directory.  Check
-[github](https://github.com/alejandroliu/pocketmine-plugins/tree/master/ManyWorlds/resources/messages/)
+[github](https://github.com/poggit-orphanage/ManyWorlds/tree/master/resources/messages/)
 for sample files.
 
 ## Issues
@@ -182,6 +187,7 @@ for sample files.
 
 # Changes
 
+* 2.2.0: New API updates
 * 2.1.0: Updating to new API
 * 2.0.3: Bugfix update
   * Fixes bug reported by @thebigsmileXD
