@@ -83,7 +83,7 @@ class MwLvDat extends BasicCli{
 					$pos = explode(",", $v);
 					if(count($pos) !== 3){
 						$c->sendMessage(mc::_("Invalid spawn location: %1%", implode(",", $pos)));
-						continue;
+						continue 2;
 					}
 					list($x, $y, $z) = $pos;
 					$cpos = $provider->getSpawn();
@@ -91,7 +91,7 @@ class MwLvDat extends BasicCli{
 						($y = (int) $y) == $cpos->getY() &&
 						($z = (int) $z) == $cpos->getZ()){
 						$c->sendMessage(mc::_("Spawn location is unchanged"));
-						continue;
+						continue 2;
 					}
 					$changed = true;
 					$provider->setSpawn(new Vector3($x, $y, $z));
@@ -100,7 +100,7 @@ class MwLvDat extends BasicCli{
 					$v = (int) $v;
 					if($provider->getSeed() === $v){
 						$c->sendMessage(mc::_("Seed unchanged"));
-						continue;
+						continue 2;
 					}
 					$changed = true;
 					$unload = true;
@@ -109,7 +109,7 @@ class MwLvDat extends BasicCli{
 				case "name": // LevelName String
 					if($provider->getName() === $v){
 						$c->sendMessage(mc::_("Name unchanged"));
-						continue;
+						continue 2;
 					}
 					$changed = true;
 					$unload = true;
@@ -118,7 +118,7 @@ class MwLvDat extends BasicCli{
 				case "generator":
 					if($provider->getLevelData()->getString("generatorName") === $v){
 						$c->sendMessage(mc::_("Generator unchanged"));
-						continue;
+						continue 2;
 					}
 					$changed = true;
 					$unload = true;
@@ -127,7 +127,7 @@ class MwLvDat extends BasicCli{
 				case "preset":    // StringTag("generatorOptions");
 					if($provider->getLevelData()->getString("generatorOptions", "") === $v){
 						$c->sendMessage(mc::_("Preset unchanged"));
-						continue;
+						continue 2;
 					}
 					$changed = true;
 					$unload = true;
@@ -135,7 +135,8 @@ class MwLvDat extends BasicCli{
 					break;
 				default:
 					$c->sendMessage(mc::_("Unknown key %1%, ignored", $k));
-					continue;
+					continue 2;
+					break;
 			}
 		}
 		if($changed){
