@@ -109,7 +109,7 @@ class MwLvDat extends BasicCli{
 				case "name": // LevelName String
 					if($provider->getName() === $v){
 						$c->sendMessage(mc::_("Name unchanged"));
-						continue;
+						continue 2;
 					}
 					$changed = true;
 					$unload = true;
@@ -135,7 +135,8 @@ class MwLvDat extends BasicCli{
 					break;
 				default:
 					$c->sendMessage(mc::_("Unknown key %1%, ignored", $k));
-					continue;
+					continue 2;
+					break;
 			}
 		}
 		if($changed){
